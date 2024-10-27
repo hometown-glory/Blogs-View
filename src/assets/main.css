@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: -apple-system-font,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Hiragino Sans GB,Microsoft YaHei UI,Microsoft YaHei,Arial,sans-serif;
+    color: #4c4e4d;
+    font-size: 16px;
+    background: #f4f4f4;
+    line-height: 1.6;
+    height: 40px;
+}
+.custom-navbar-height {
+    height: 80px; /* 你可以根据需要调整这个值 */
+}
+.custom-navbar-height .p-2{
+   height: 40px;
+    margin-top: -10px;
+}
