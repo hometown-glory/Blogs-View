@@ -4,7 +4,13 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'index',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/fronted/indexView.vue')
+    component: () => import( '@/views/fronted/indexView.vue')
+  },
+  {
+    path: '/login',
+    name: 'login',
+    meta: { title: 'weblog登录页面' },
+    component: () => import( '@/views/admin/loginView.vue')
   }
 ]
 
