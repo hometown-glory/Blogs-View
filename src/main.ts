@@ -4,10 +4,12 @@ import router from './router'
 import store from './store'
 
 import '@/assets/main.css'
+import 'animate.css'
 //引入element-plus模块
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+
 
 
 //use方法使用ElementPlus
