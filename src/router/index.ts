@@ -4,6 +4,7 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
         name: 'index',
+        meta:{title: 'weblog首页'},
         component: () => import( '@/views/fronted/indexView.vue')
     },
     {
