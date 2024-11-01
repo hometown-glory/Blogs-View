@@ -1,9 +1,18 @@
 <!--管理首页-->
+<script setup lang="ts">
+import AdminMenu from "@/views/admin/components/adminMenu.vue";
+import AdminHeater from "@/views/admin/components/adminHeader.vue";
+import AdminFooter from "@/views/admin/components/adminFooter.vue";
+import AdminTagList from "@/views/admin/components/adminTagList.vue";
+
+import { useMenuStore } from "@/stores/menu";
+const menuStore = useMenuStore();
+</script>
 <template>
   <!-- 外层容器 -->
   <el-container>
     <!-- 左边侧边栏 -->
-    <el-aside>
+    <el-aside :width='menuStore.menuWidth' class="transition-all">
       <admin-menu></admin-menu>
     </el-aside>
 
@@ -49,9 +58,4 @@
   padding: 0 !important;
 }
 </style>
-<script setup lang="ts">
-import AdminMenu from "@/views/admin/components/adminMenu.vue";
-import AdminHeater from "@/views/admin/components/adminHeater.vue";
-import AdminFooter from "@/views/admin/components/adminFooter.vue";
-import AdminTagList from "@/views/admin/components/adminTagList.vue";
-</script>
+
