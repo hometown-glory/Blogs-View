@@ -78,7 +78,7 @@ const onSubmit = () => {
       setToken(token)
 
       // 跳转到后台首页
-      router.push('/admin');
+      router.push('/admin/adminIndex');
     } else {
       // 获取服务端返回的错误消息
       const message = res.data.message
