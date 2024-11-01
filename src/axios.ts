@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getToken } from "@/utils/auth";
+import { getToken } from "@/utils/cookie";
 import { showMessage } from "@/utils/message";
 import router from "@/router";
 

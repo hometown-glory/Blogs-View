@@ -29,8 +29,6 @@ const menuStore = useMenuStore();
 
         <!--标签导航栏-->
         <admin-tag-list></admin-tag-list>
-
-        主要内容
         <router-view></router-view>
 
       </el-main>

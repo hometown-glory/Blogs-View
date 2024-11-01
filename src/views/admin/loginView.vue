@@ -40,7 +40,7 @@ import {login} from '@/api/admin/user';
 import {reactive, onMounted, onBeforeUnmount, ref} from 'vue';
 import {useRouter} from 'vue-router';
 import {showMessage} from "@/utils/message";
-import {setToken} from '@/utils/auth'
+import {setToken} from '@/utils/cookie'
 import { AxiosResponse } from 'axios'
 
 // login 函数返回的响应类型
