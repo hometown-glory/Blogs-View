@@ -17,6 +17,7 @@
     "element-plus": "^2.8.6",
     "flowbite": "^2.5.2",
     "pinia": "^2.2.5",
+    "pinia-plugin-persistedstate": "^4.1.2",
     "universal-cookie": "^7.2.1",
     "vite": "^5.4.10",
     "vue": "^3.2.13",

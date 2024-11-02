@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import { createPinia } from 'pinia'
+import  pinia  from '@/stores'
 
 // 导入全局路由守卫
 import '@/permission'
@@ -18,8 +18,6 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 const app = createApp(App) // 使用 createApp 创建应用实例
 
-// 注册 pinia
-const pinia = createPinia()
 app.use(pinia)
 
 // 使用 ElementPlus

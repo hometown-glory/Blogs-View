@@ -42,6 +42,8 @@ import {useRouter} from 'vue-router';
 import {showMessage} from "@/utils/message";
 import {setToken} from '@/utils/cookie'
 import { AxiosResponse } from 'axios'
+import {useUserStore} from "@/stores/user";
+const userStore = useUserStore()
 
 // login 函数返回的响应类型
 interface LoginResponse {
@@ -76,6 +78,10 @@ const onSubmit = () => {
       // 存储 Token 到 Cookie 中
       const token = res.data.data.token
       setToken(token)
+
+      // 获取用户信息，并存储到全局状态中
+      userStore.setUserInfo()
+
 
       // 跳转到后台首页
       router.push('/admin/adminIndex');

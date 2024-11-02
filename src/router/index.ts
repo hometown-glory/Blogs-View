@@ -1,5 +1,6 @@
 import {createRouter, createWebHashHistory, RouteRecordRaw} from 'vue-router'
-//文章分类路由
+//用户路由
+import userRoutes from "@/router/admin/userRouter";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -23,7 +24,7 @@ const routes: Array<RouteRecordRaw> = [
             {
                 path:'/admin/index',
                 name:'indexView',
-                meta:{title:'后台首页'},
+                meta:{title:'仪表盘'},
                 component:()=>import('@/views/admin/indexView.vue')
             },
             {
@@ -52,7 +53,8 @@ const routes: Array<RouteRecordRaw> = [
             },
 
         ]
-    }
+    },
+    ...userRoutes
 ]
 
 const router = createRouter({

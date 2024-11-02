@@ -4,8 +4,8 @@ import AdminMenu from "@/views/admin/components/adminMenu.vue";
 import AdminHeater from "@/views/admin/components/adminHeader.vue";
 import AdminFooter from "@/views/admin/components/adminFooter.vue";
 import AdminTagList from "@/views/admin/components/adminTagList.vue";
+import {useMenuStore} from "@/stores/menu";
 
-import { useMenuStore } from "@/stores/menu";
 const menuStore = useMenuStore();
 </script>
 <template>
@@ -15,33 +15,33 @@ const menuStore = useMenuStore();
     <el-aside :width='menuStore.menuWidth' class="transition-all">
       <admin-menu></admin-menu>
     </el-aside>
-
     <!-- 右边主内容区域 -->
     <el-container>
-
       <!-- 顶栏容器 -->
       <el-header>
         <admin-heater></admin-heater>
       </el-header>
-
       <!-- 主内容（根据路由动态展示不同页面） -->
       <el-main>
-
         <!--标签导航栏-->
         <admin-tag-list></admin-tag-list>
-        <router-view></router-view>
-
+        <!-- 主内容（根据路由动态展示不同页面） -->
+        <router-view v-slot="{ Component }">
+          <Transition name="fade">
+            <!-- max 指定最多缓存 10 个组件 -->
+            <KeepAlive :max="10">
+              <component :is="Component"></component>
+            </KeepAlive>
+          </Transition>
+        </router-view>
       </el-main>
-
       <!-- 底栏容器 -->
       <el-footer>
         <admin-footer></admin-footer>
       </el-footer>
-
     </el-container>
   </el-container>
 </template>
-
 
 <style scoped>
 .el-header {
@@ -54,6 +54,39 @@ const menuStore = useMenuStore();
 
 .el-footer {
   padding: 0 !important;
+}
+
+/* 内容区域过渡动画：淡入淡出效果 */
+/* 刚开始进入时 */
+.fade-enter-from {
+  /* 透明度 */
+  opacity: 0;
+}
+
+/* 刚开始结束 */
+.fade-enter-to {
+  opacity: 1;
+}
+
+/* 刚开始离开 */
+.fade-leave-from {
+  opacity: 1;
+}
+
+/* 离开已结束 */
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* 离开进行中 */
+.fade-leave-active {
+  transition: all 0.3s;
+}
+
+/* 进入进行中 */
+.fade-enter-active {
+  transition: all 0.3s;
+  transition-delay: 0.3s;
 }
 </style>
 
