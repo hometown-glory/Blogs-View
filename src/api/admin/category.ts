@@ -14,7 +14,7 @@ export function getCategoryPageList(params: QueryParams) {
 }
 
 interface CategoryData {
-    name: string;
+    tags: string;
 }
 // 添加分类
 export function addCategory(data:CategoryData) {

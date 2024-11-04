@@ -9,6 +9,7 @@ import {AxiosResponse} from "axios";
 import FormDialog from "@/components/FormDialog.vue";
 
 const formDialogRef = ref()
+const tableLoading = ref(false)
 
 // 新增分类按钮点击事件
 const addCategoryBtnClick = () => {
@@ -73,6 +74,7 @@ const tableData = ref([])
 
 // 获取分页数据
 function getTableData() {
+  tableLoading.value = true
   getCategoryPageList({
     current: current.value,
     size: size.value,
@@ -99,7 +101,8 @@ function getTableData() {
       })
       .catch((error) => {
         console.error('请求错误:', error);
-      });
+      })
+      .finally(() => tableLoading.value = false);
 }
 
 getTableData()
@@ -120,7 +123,7 @@ const reset = () => {
 }
 
 // 对话框是否显示
-const dialogVisible = ref(false)
+// const dialogVisible = ref(false)
 // 表单引用
 const formRef = ref()
 // 修改用户密码表单对象
@@ -148,7 +151,7 @@ const onSubmit = () => {
       console.log('表单验证不通过');
       return false;
     }
-
+    formDialogRef.value.showBtnLoading()
     // 请求添加分类接口
     addCategory(form).then((res: AxiosResponse<AddCategoryResponse>) => {
       if (res.data.success) {
@@ -162,8 +165,8 @@ const onSubmit = () => {
         showMessage(message, 'error');
       }
     });
-
-  });
+  })
+      .finally(() => formDialogRef.value.closeBtnLoading());
 };
 
 // 删除分类
@@ -227,8 +230,12 @@ const deleteCategorySubmit = (row: TableRow) => {
       </div>
 
       <!-- 分页列表 -->
-      <el-table :data="tableData" border stripe style="width: 100%">
-        <el-table-column prop="id" label="ID" width="50"/>
+      <el-table :data="tableData" border stripe style="width: 100%" v-loading="tableLoading">
+        <el-table-column prop="name" label="标签名称" width="180">
+          <template #default="scope">
+            <el-tag class="ml-2" type="success">{{ scope.row.name }}</el-tag>
+          </template>
+        </el-table-column>
         <el-table-column prop="name" label="分类名称" width="180"/>
         <el-table-column prop="createTime" label="创建时间" width="180"/>
         <el-table-column label="操作">

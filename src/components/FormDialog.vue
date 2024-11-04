@@ -44,8 +44,17 @@ const submit = () => emit('submit');
 const open = () => (dialogVisible.value = true);
 const close = () => (dialogVisible.value = false);
 
+// 确认按钮加载 loading
+const btnLoading = ref(false)
+// 显示 loading
+const showBtnLoading = () => btnLoading.value = true
+// 隐藏 loading
+const closeBtnLoading = () => btnLoading.value = false
+
 defineExpose({
   open,
   close,
+  showBtnLoading,
+  closeBtnLoading
 });
 </script>
