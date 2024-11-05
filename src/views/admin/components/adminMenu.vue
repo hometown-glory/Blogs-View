@@ -2,13 +2,13 @@
 <script setup lang="ts">
 import {Monitor, Document, FolderOpened, PriceTag, Setting} from "@element-plus/icons-vue";
 import {useRouter, useRoute} from 'vue-router';
-import {ref, computed } from 'vue';
+import {ref, computed} from 'vue';
 import {useMenuStore} from '@/stores/menu';
 
 // 引入菜单状态管理
 const menuStore = useMenuStore();
 // 是否折叠
-const isCollapse = computed(() =>  !(menuStore.menuWidth == '250px'))
+const isCollapse = computed(() => !(menuStore.menuWidth == '250px'))
 
 // 获取当前路由对象和路由器实例
 const route = useRoute();
@@ -53,27 +53,28 @@ const menus = [
 </script>
 
 <template>
-  <div class="bg-slate-800 h-screen text-white menu-container transition-all" :style="{width:menuStore.menuWidth}">
     <!-- 顶部 Logo, 指定高度为 64px, 和右边的 Header 头保持一样高 -->
-    <div class="flex items-center justify-center h-[64px]">
-      <img v-if="menuStore.menuWidth == '250px'" src="@/assets/weblog-logo.png" class="h-[60px]" alt="">
-      <img v-else src="@/assets/weblog-logo-mini.png" class="h-[60px]" alt="">
+    <div class="fixed overflow-auto bg-slate-800 h-screen text-white menu-container transition-all"
+         :style="{width:menuStore.menuWidth}">
+      <div class="flex items-center justify-center h-[64px]">
+        <img v-if="menuStore.menuWidth == '250px'" src="@/assets/weblog-logo.png" class="h-[60px]" alt="">
+        <img v-else src="@/assets/weblog-logo-mini.png" class="h-[60px]" alt="">
+      </div>
+
+      <!-- 下方菜单 -->
+      <el-menu :default-active="defaultActive" @select="handleSelect" :collapse="isCollapse"
+               :collapse-transition="false">
+        <template v-for="(item, index) in menus" :key="index">
+          <el-menu-item :index="item.path" class="hover:bg-white hover:bg-opacity-30">
+            <el-icon>
+              <!-- 动态图标 -->
+              <component :is="item.icon"></component>
+            </el-icon>
+            <span>{{ item.name }}</span>
+          </el-menu-item>
+        </template>
+      </el-menu>
     </div>
-
-    <!-- 下方菜单 -->
-    <el-menu :default-active="defaultActive" @select="handleSelect" :collapse="isCollapse" :collapse-transition="false">
-      <template v-for="(item, index) in menus" :key="index">
-        <el-menu-item :index="item.path" class="hover:bg-white hover:bg-opacity-30">
-          <el-icon>
-            <!-- 动态图标 -->
-            <component :is="item.icon"></component>
-          </el-icon>
-          <span>{{ item.name }}</span>
-        </el-menu-item>
-      </template>
-    </el-menu>
-
-  </div>
 </template>
 
 <style scoped>
@@ -105,5 +106,6 @@ const menus = [
 .hover\:bg-opacity-30:hover {
   background-color: rgba(255, 255, 255, 0.3); /* 悬停时背景色透明度为 0.3 */
 }
+
 </style>
 
