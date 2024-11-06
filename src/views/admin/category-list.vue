@@ -252,14 +252,14 @@ const deleteCategorySubmit = (row: TableRow) => {
             </el-button>
           </template>
         </el-table-column>
-      </el-table>
 
-      <!-- 分页 -->
-      <div class="mt-10 flex justify-center">
-        <el-pagination v-model:current-page="current" v-model:page-size="size" :page-sizes="[10, 20, 50]"
-                       :small="false" :background="true" layout="total, sizes, prev, pager, next, jumper"
-                       :total="total" @size-change="handleSizeChange" @current-change="getTableData"/>
-      </div>
+        <!-- 分页 -->
+        <div class="mt-10 flex justify-center">
+          <el-pagination v-model:current-page="current" v-model:page-size="size" :page-sizes="[10, 20, 50]"
+                         :small="false" :background="true" layout="total, sizes, prev, pager, next, jumper"
+                         :total="total" @size-change="handleSizeChange" @current-change="getTableData"/>
+        </div>
+      </el-table>
     </el-card>
   </div>
   <!--添加分类-->

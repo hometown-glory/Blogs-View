@@ -1,6 +1,9 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
-  transpileDependencies: true,
+  transpileDependencies: [
+    'md-editor-v3',
+    'lru-cache'
+  ],
   devServer:{
     port: 7070,
     proxy:{
