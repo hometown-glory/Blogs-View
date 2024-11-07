@@ -26,3 +26,4 @@ export function addTag(data:TagListData) {
 export function deleteTag(id:number) {
     return axios.post("/admin/tag/delete", {id})
 }
+
