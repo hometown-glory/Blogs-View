@@ -1,7 +1,8 @@
 import axios from 'axios'
-import { getToken } from "@/utils/cookie";
+import {getToken, removeToken} from "@/utils/cookie";
 import { showMessage } from "@/utils/message";
 import router from "@/router";
+import {useUserStore} from "@/stores/user";
 
 // 创建axios实例
 const instance = axios.create({
@@ -31,23 +32,22 @@ instance.interceptors.request.use(function (config) {
 
 // 添加响应拦截器
 instance.interceptors.response.use(function (response) {
-    // 2xx 范围内的状态码都会触发该函数。
-    // 对响应数据做点什么
-
     // 假设后台返回的错误信息格式为 { code: 500, message: '错误信息' }
     if (response.data.code && response.data.code !== 200) {
         showMessage(response.data.message || '请求失败', 'error');
         return Promise.reject(new Error(response.data.message || '请求失败'));
     }
-
     return response;
 }, function (error) {
     // 超出 2xx 范围的状态码都会触发该函数。
     // 若后台有错误提示就用提示文字，默认提示为 '请求失败'
     let errorMsg = '请求失败';
     if (error.response) {
+        const userStore = useUserStore();
         switch (error.response.status) {
             case 401:
+                removeToken();
+                userStore.logout();
                 errorMsg = '未授权，请重新登录';
                 router.push('/login');
                 break;

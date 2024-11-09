@@ -123,13 +123,9 @@ function initBlogSettings() {
 onMounted(() => {
   initBlogSettings();
 });
-// 表单对象类型
-interface Form {
-  logo: string; // 根据需要添加其他字段
-  avatar:string;
-}
+
 // 处理文件更改的函数
-const handleFileChange = (file: { raw: File }, form: Form) => {
+const handleFileChange = (file: { raw: File }) => {
   // 创建 FormData 对象
   const formData = new FormData();
   // 添加 file 字段，并将文件传入
@@ -153,7 +149,7 @@ const handleFileChange = (file: { raw: File }, form: Form) => {
     console.error(error);
   });
 };
-const handleAvatarChange = (file: { raw: File }, form: Form) => {
+const handleAvatarChange = (file: { raw: File }) => {
   const formData = new FormData();
   formData.append('file', file.raw);
 

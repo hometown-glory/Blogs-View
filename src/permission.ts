@@ -2,6 +2,7 @@ import router from '@/router/index'
 import {getToken} from '@/utils/cookie'
 import {showMessage} from '@/utils/message'
 import {hidePageLoading, showPageLoading} from '@/utils/nprogressUtils'
+import { useBlogSettingsStore } from '@/stores/blogsettings'
 
 // 全局路由前置守卫
 router.beforeEach((to, _from, next) => {
@@ -16,6 +17,10 @@ router.beforeEach((to, _from, next) => {
     } else if (!token && to.path.startsWith('/admin')) {
         showMessage('请先登录', 'warning')
         next({path: '/login'})
+    }else if(token && !to.path.startsWith('/admin')){
+        const blogSettingsStore = useBlogSettingsStore()
+        blogSettingsStore.getBlogSettings()
+        next()
     } else {
         next()
     }

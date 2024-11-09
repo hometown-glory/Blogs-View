@@ -17,8 +17,8 @@ export const useUserStore = defineStore('user', () => {
         // 调用后端获取用户信息接口
         getUserInfo().then((response) => {
             const res = response.data;
-            if (res.success === true) {
-                userInfo.value = res.data as UserInfo;
+            if (res.success) {
+                userInfo.value = res.data;
             }
         });
     }
