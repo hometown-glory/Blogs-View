@@ -16,6 +16,10 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
+// 图片点击放大
+import 'viewerjs/dist/viewer.css'
+import VueViewer from 'v-viewer'
+
 const app = createApp(App) // 使用 createApp 创建应用实例
 
 app.use(pinia)
@@ -26,6 +30,9 @@ app.use(ElementPlus)
 // 使用 store 和 router
 app.use(store)
 app.use(router)
+
+// 使用 v-viewer
+app.use(VueViewer)
 
 // 注册所有 ElementPlus 图标组件
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {

@@ -14,6 +14,11 @@ export function getArticlePageList(data : ArticlePage) {
     return axios.post("/article/list", data)
 }
 
+// 获取文章详情
+export function getArticleDetail(articleId:number) {
+    return axios.post("/article/detail", {articleId})
+}
+
 
 
 

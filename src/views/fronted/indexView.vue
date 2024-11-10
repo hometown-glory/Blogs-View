@@ -13,7 +13,7 @@
             <div
                 class="bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
               <!-- 文章封面 -->
-              <a href="#">
+              <a @click="goArticleDetailPage(article.id)" class="cursor-pointer">
                 <img class="rounded-t-lg h-48 w-full"
                      :src="article.cover"
                      alt=""/>
@@ -27,7 +27,7 @@
                 </div>
 
                 <!-- 文章标题 -->
-                <a href="#">
+                <a @click="goArticleDetailPage(article.id)" class="cursor-pointer">
                   <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                     {{ articles.title }}
                   </h2>
@@ -132,6 +132,8 @@ import {getArticlePageList} from "@/api/fronted/article"
 import UserInfoCard from "@/views/fronted/components/UserInfoCard.vue";
 import CategoryListCard from "@/views/fronted/components/CategoryListCard.vue";
 import TagListCard from "@/views/fronted/components/TagListCard.vue";
+import router from "@/router";
+
 
 onMounted(() => {
   initTooltips();
@@ -164,4 +166,9 @@ function getArticles(currentNo: number) {
 }
 
 getArticles(current.value)
+
+// 跳转文章详情页
+const goArticleDetailPage = (articleId: number) => {
+  router.push('/article/' + articleId)
+}
 </script>
