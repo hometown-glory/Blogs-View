@@ -10,6 +10,32 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import( '@/views/fronted/indexView.vue')
     },
     {
+        path:'/archive/list',
+        name: 'archiveList',
+        meta:{title:'Weblog归档'},
+        component: () => import( '@/views/fronted/archive-list.vue')
+    },{
+        path: '/category/list',
+        name: 'categoryList',
+        meta:{title:'Weblog分类'},
+        component: () => import( '@/views/fronted/category-list.vue')
+    },{
+        path: '/category/article/list', // 分类文章页
+        name: 'articleDetail',
+        meta:{title:'Weblog 分类文章页'},
+        component: () => import( '@/views/fronted/category-article-list.vue')
+    },{
+        path: '/tag/list',
+        name: 'tagList',
+        meta:{title:'Weblog标签列表页'},
+        component: () => import( '@/views/fronted/tag-list.vue')
+    },{
+        path: '/tag/article/list', // 标签列表页
+        name:'tagArticleList',
+        meta:{title:'标签文章列表页'},
+        component: () => import( '@/views/fronted/tag-article-list.vue')
+    },
+    {
         path: '/login',
         name: 'login',
         meta: {title: 'weblog登录页面'},

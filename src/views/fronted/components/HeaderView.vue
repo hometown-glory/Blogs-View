@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { onMounted, ref} from 'vue';
-import { initCollapses, initDropdowns,initModals } from 'flowbite';
-import { useUserStore } from '@/stores/user';
-import { useBlogSettingsStore } from '@/stores/blogsettings'
-import { useRouter } from 'vue-router'
+import {onMounted, ref} from 'vue';
+import {initCollapses, initDropdowns, initModals} from 'flowbite';
+import {useUserStore} from '@/stores/user';
+import {useBlogSettingsStore} from '@/stores/blogsettings'
+import {useRouter} from 'vue-router'
 import {showMessage} from '@/utils/message'
 
 // 初始化 flowbite 相关组件
@@ -44,6 +44,7 @@ function logout() {
   isLogined.value = false
   showMessage('退出登录成功')
 }
+
 // 引入博客设置信息 store
 const blogSettingsStore = useBlogSettingsStore()
 </script>
@@ -81,12 +82,13 @@ const blogSettingsStore = useBlogSettingsStore()
                    placeholder="请输入关键词...">
           </div>
           <!-- 登录 -->
-          <div class="text-gray-900 hover:text-blue-700  font-bold" v-if="!isLogined" style="margin-left: 20px;cursor: pointer;"
+          <div class="text-gray-900 hover:text-blue-700  font-bold" v-if="!isLogined"
+               style="margin-left: 20px;cursor: pointer;"
                @click="$router.push('/login')">登录
           </div>
           <!-- 已经登录，展示用户头像 -->
           <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" v-else
-                  class="text-white ml-2 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  class="text-white ml-2 mr-2 md:mr-0 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   type="button">
             <!-- 用户登录头像 -->
             <img class="w-8 h-8 rounded-full" :src="blogSettingsStore.blogSettings?.data.avatar" alt="user photo">
@@ -97,13 +99,13 @@ const blogSettingsStore = useBlogSettingsStore()
                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
               <li>
-                <a href="#" @click="router.push('/admin/blog-setting')"
+                <a @click="router.push('/admin/blog-setting')"
                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                   <svg class="inline w-3 h-3 mb-[2px] mr-1 text-gray-700 dark:text-white" aria-hidden="true"
                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                           stroke-width="2"
-                          d="M10 14v4m-4 1h8M1 10h18M2 1h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Z" />
+                          d="M10 14v4m-4 1h8M1 10h18M2 1h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Z"/>
                   </svg>
                   进入后台
                 </a>
@@ -115,7 +117,7 @@ const blogSettingsStore = useBlogSettingsStore()
                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                           stroke-width="2"
-                          d="M4 8h11m0 0-4-4m4 4-4 4m-5 3H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h3" />
+                          d="M4 8h11m0 0-4-4m4 4-4 4m-5 3H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h3"/>
                   </svg>
                   退出登录
                 </a>
@@ -124,7 +126,9 @@ const blogSettingsStore = useBlogSettingsStore()
           </div>
 
           <button data-collapse-toggle="navbar-search" type="button"
-                  class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                  class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden
+                  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700
+                  dark:focus:ring-gray-600"
                   aria-controls="navbar-search" aria-expanded="false">
             <span class="sr-only">Open main menu</span>
             <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -145,25 +149,36 @@ const blogSettingsStore = useBlogSettingsStore()
             </div>
             <input type="text" id="search-navbar"
                    class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                   placeholder="Search...">
+                   placeholder="搜索关键词...">
           </div>
           <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
               <a href="#"
+                 :class="[currPath == '/' ? 'text-blue-700' : 'text-gray-900']"
                  class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                  aria-current="page">首页</a>
             </li>
             <li>
-              <a href="#"
-                 class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">分类</a>
+              <a @click="router.push('/category/list')"
+                 :class="[currPath == '/category/list' ? 'text-blue-700' : 'text-gray-900']"
+                 class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent
+                 md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white
+                 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent
+                 dark:border-gray-700">分类</a>
             </li>
             <li>
-              <a href="#"
-                 class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">标签</a>
+              <a @click="router.push('/tag/list')"
+                 :class="[currPath == '/tag/list' ? 'text-blue-700' : 'text-gray-900']"
+                 class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:text-blue-500
+                  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white
+                  md:dark:hover:bg-transparent dark:border-gray-700">标签</a>
             </li>
             <li>
-              <a href="#"
-                 class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">归档</a>
+              <a @click="router.push('/archive/list')"
+                 :class="[currPath == '/archive/list' ? 'text-blue-700' : 'text-gray-900']"
+                 class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:text-blue-500
+                  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white
+                  md:dark:hover:bg-transparent dark:border-gray-700">归档</a>
             </li>
           </ul>
         </div>
@@ -181,7 +196,7 @@ const blogSettingsStore = useBlogSettingsStore()
           <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                viewBox="0 0 14 14">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
           </svg>
           <span class="sr-only">Close modal</span>
         </button>
@@ -189,7 +204,7 @@ const blogSettingsStore = useBlogSettingsStore()
           <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true"
                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                  d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
           </svg>
           <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">是否确定退出登录?
           </h3>
@@ -199,7 +214,8 @@ const blogSettingsStore = useBlogSettingsStore()
           </button>
           <button data-modal-hide="popup-modal" type="button"
                   class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
-            取消</button>
+            取消
+          </button>
         </div>
       </div>
     </div>
