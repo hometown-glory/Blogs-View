@@ -1,6 +1,6 @@
 <!--文章列表-->
 <script setup lang="ts">
-import {Delete, Edit, EditPen, Plus, Promotion, RefreshRight, Search} from "@element-plus/icons-vue";
+import {Delete, Edit, EditPen, Plus, Promotion, RefreshRight, Search, View} from "@element-plus/icons-vue";
 import {
   getArticlePageList,
   deleteArticle,
@@ -19,6 +19,14 @@ import 'md-editor-v3/lib/style.css'
 import {uploadFile} from "@/api/admin/file";
 import {AxiosResponse} from "axios";
 import type {FormInstance} from 'element-plus';
+
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+// 跳转文章详情页
+const goArticleDetailPage = (articleId) => {
+  router.push('/article/' + articleId)
+}
 
 const tableLoading = ref(false)
 
@@ -438,6 +446,7 @@ const handleSizeChange = (chooseSize: number) => {
 
       <!-- 分页列表 -->
       <el-table :data="tableData" border stripe style="width: 100%" v-loading="tableLoading">
+        <el-table-column prop="id" label="ID" width="50" />
         <el-table-column prop="title" label="标题" width="180"/>
         <el-table-column prop="cover" label="封面" width="180">
           <template #default="scope">
@@ -454,6 +463,11 @@ const handleSizeChange = (chooseSize: number) => {
               </el-icon>
               编辑
             </el-button>
+            <el-button size="small" @click="goArticleDetailPage(scope.row.id)">
+              <el-icon class="mr-1">
+                <View />
+              </el-icon>
+              预览</el-button>
             <el-button type="danger" size="small" @click="deleteCategorySubmit(scope.row)">
               <el-icon class="mr-1">
                 <Delete/>

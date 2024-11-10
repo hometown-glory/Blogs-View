@@ -6,6 +6,7 @@ import {useBlogSettingsStore} from '@/stores/blogsettings'
 import {useRouter} from 'vue-router'
 import {showMessage} from '@/utils/message'
 
+
 // 初始化 flowbite 相关组件
 onMounted(() => {
   initCollapses();
@@ -50,7 +51,7 @@ const blogSettingsStore = useBlogSettingsStore()
 </script>
 
 <template>
-  <header class="sticky top-0 z-100">
+  <header class="sticky top-0 z-10">
     <nav class="bg-white border-gray-200 border-b dark:bg-gray-900 custom-navbar-height">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
         <a href="/" class="flex items-center">
